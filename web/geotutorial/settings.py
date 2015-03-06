@@ -36,6 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
+    'world'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,8 +61,8 @@ WSGI_APPLICATION = 'geotutorial.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'NAME': 'geodjango',
+        'USER': 'geo',
         'HOST': 'db',
         'PORT': 5432,
     }
