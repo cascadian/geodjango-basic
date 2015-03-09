@@ -1,7 +1,5 @@
 db:
-  image: mdillon/postgis:9.3
-  volumes:
-    - ./postgres_data:/var/lib/postgresql
+  build: ./db/
   ports:
     - "5433:5432"
 web:
