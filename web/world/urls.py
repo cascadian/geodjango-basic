@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'borders', views.BorderViewSet)
+router.register(r'buffered-borders', views.BufferedBorderViewSet)
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),

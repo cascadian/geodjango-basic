@@ -4,4 +4,3 @@ djangorestframework==3.0.4
 djangorestframework-gis
 markdown
 django-filter
-django-geojson

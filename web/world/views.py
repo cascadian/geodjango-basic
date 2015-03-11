@@ -6,8 +6,7 @@ def index(request):
     context = { 'title': "A working title", 'message': "Hello, world. You're at the worlds index view"}
     return render(request, 'world/index.html', context)
 
-from models import WorldBorder
-from djgeojson.serializers import Serializer as GeoJSONSerializer
+from models import WorldBorder, BufferedWorldBorder
 from django.core.serializers import serialize
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,24 +14,24 @@ from rest_framework import status
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from serializers import UserSerializer, GroupSerializer, BorderSerializer
+from serializers import UserSerializer, GroupSerializer, BorderSerializer, BufferedBorderSerializer
 
-# class BorderList(APIView):
-#     def get(self, request, format=None):
-#         borders = WorldBorder.objects.all()
-#         serializer = GeoFeatureModelSerializer()
-#         geojson = GeoJSONSerializer().serialize(borders, geometry_field='mpoly', use_natural_keys=True, properties=['name', 'pop2005'])
-#         return Response(geojson)
-
-
-
-class BorderViewSet(viewsets.ModelViewSet):
+class BorderViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows world borders to be viewed or edited.
     """
-    queryset = WorldBorder.objects.all()
+    queryset = WorldBorder.objects.filter(subregion=21)
     serializer_class = BorderSerializer
 
+class BufferedBorderViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows world borders to be viewed or edited.
+    """
+    queryset = BufferedWorldBorder.objects.raw("""SELECT id, name,
+                                        ST_BUFFER(mpoly, 1) as geom
+                                        FROM world_worldborder
+                                        WHERE name = 'United States'""")
+    serializer_class = BufferedBorderSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
