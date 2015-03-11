@@ -3,18 +3,16 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    context = { 'title': "A working title", 'message': "Hello, world. You're at the worlds index view"}
+    context = { 'title': "World Borders", 'message': "A world map"}
     return render(request, 'world/index.html', context)
 
 from models import WorldBorder, BufferedWorldBorder
+from serializers import BorderSerializer, BufferedBorderSerializer
 from django.core.serializers import serialize
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
-from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from serializers import UserSerializer, GroupSerializer, BorderSerializer, BufferedBorderSerializer
 
 class BorderViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -32,19 +30,3 @@ class BufferedBorderViewSet(viewsets.ReadOnlyModelViewSet):
                                         FROM world_worldborder
                                         WHERE name = 'United States'""")
     serializer_class = BufferedBorderSerializer
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer

@@ -1,4 +1,4 @@
-(function(){
+MAP = (function(){
 var image = new ol.style.Circle({
   radius: 5,
   fill: null,
@@ -125,5 +125,6 @@ function addLayer(url, title, style){
 
 }
 
+return map;
 
 })()
