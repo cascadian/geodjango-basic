@@ -103,41 +103,40 @@ MAP = (function() {
     })
   });
 
-  addLayer('/world/borders/', 'World borders')
-    .then(function() {
-      return addLayer('/world/buffered-borders/', 'Buffered World Borders',
-        function(feature) {
-          return [new ol.style.Style({
-            stroke: new ol.style.Stroke({
-              color: 'blue',
-              lineDash: [4],
-              width: 3
-            }),
-            fill: new ol.style.Fill({
-              color: 'rgba(0, 0, 255, 0.1)'
-            }),
-            text: new ol.style.Text({
-              text: feature.get('name'),
-              font: '12px Calibri,sans-serif',
-              fill: new ol.style.Fill({
-                color: '#000'
-              }),
-              stroke: new ol.style.Stroke({
-                color: '#fff',
-                width: 3
-              })
-            })
-          })]
-        }
-      );
-    }).then(function() {
-      
-    })
-
+  addLayer('/world/borders/', 'World borders');
+  addLayer('/world/buffered-borders/', 'Buffered World Borders',
+    function(feature) {
+      return [new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: 'blue',
+          lineDash: [4],
+          width: 3
+        }),
+        fill: new ol.style.Fill({
+          color: 'rgba(0, 0, 255, 0.1)'
+        }),
+        text: new ol.style.Text({
+          text: feature.get('name'),
+          font: '12px Calibri,sans-serif',
+          fill: new ol.style.Fill({
+            color: '#000'
+          }),
+          stroke: new ol.style.Stroke({
+            color: '#fff',
+            width: 3
+          })
+        })
+      })]
+    }
+  );
 
   function addLayer(url, title, style) {
 
-    return httpinvoke(url, 'GET')
+    return httpinvoke(url, 'GET', {
+        headers: {
+          'accept': 'application/json'
+        },
+      })
       .then(function(res) {
         var geoJSON = JSON.parse(res.body);
         var source = new ol.source.GeoJSON({

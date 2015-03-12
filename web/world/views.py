@@ -6,6 +6,7 @@ def index(request):
     context = { 'title': "World Borders", 'message': "A world map"}
     return render(request, 'world/index.html', context)
 
+from django.db.models import Q
 from models import WorldBorder, BufferedWorldBorder
 from serializers import BorderSerializer, BufferedBorderSerializer
 from django.core.serializers import serialize
@@ -18,7 +19,7 @@ class BorderViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows world borders to be viewed or edited.
     """
-    queryset = WorldBorder.objects.filter(subregion=21)
+    queryset = WorldBorder.objects.filter(Q(name='United States') | Q(name='Mexico'))
     serializer_class = BorderSerializer
 
 class BufferedBorderViewSet(viewsets.ReadOnlyModelViewSet):
