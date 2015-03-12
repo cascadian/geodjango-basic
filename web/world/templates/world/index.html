@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}My amazing blog{% endblock %}
+{% block title %}World map - GeoDjango, PostGIS{% endblock %}
+
+{% block styles %}
+<style>
+.map {
+  height: 800px;
+  width: 100%;
+}
+</style>
+{% endblock styles %}
 
 {% block content %}
 
@@ -12,6 +21,5 @@
 
 {% block scripts %}
 {% load staticfiles  %}
-<script src="{% static "world/js/httpinvoke-browser.js" %}"></script>
 <script src="{% static "world/js/index.js" %}"></script>
 {% endblock scripts %}
