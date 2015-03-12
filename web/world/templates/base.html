@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="{% static "world/libs/ol/v3.3.0/ol.css" %}" type="text/css">
-  <link rel="stylesheet" href="{% static "world/libs/ol/v3.3.0/ol.css" %}" type="text/css">
+  <link rel="stylesheet" href="{% static "world/lib/ol/v3.3.0/ol.css" %}" type="text/css">
+  <link rel="stylesheet" href="{% static "world/lib/ol/v3.3.0/ol.css" %}" type="text/css">
   {% block styles %}{% endblock %}
   <title>{% block title %}OpenLayers 3 example{% endblock %}</title>
 </head>
@@ -11,8 +11,8 @@
   <div id="content">
     {% block content %}{% endblock %}
   </div>
-  <script src="{% static "world/libs/ol/v3.3.0/ol-debug.js" %}" type="text/javascript"></script>
-  <script src="{% static "world/libs/httpinvoke/httpinvoke-browser.js" %}"></script>
+  <script src="{% static "world/lib/ol/v3.3.0/ol-debug.js" %}" type="text/javascript"></script>
+  <script src="{% static "world/lib/httpinvoke/httpinvoke-browser.js" %}"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>
