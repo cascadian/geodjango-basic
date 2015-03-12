@@ -28,3 +28,15 @@ def run(verbose=True):
                     transform=False, encoding='iso-8859-1')
 
   lm.save(strict=True, verbose=verbose)
+
+from models import State, state_mapping
+
+state_shp = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), 'data/states/states.shp'))
+
+
+def states(verbose=True):
+  lm = LayerMapping(State, state_shp, state_mapping,
+                    transform=False, encoding='iso-8859-1')
+
+  lm.save(strict=True, verbose=verbose)

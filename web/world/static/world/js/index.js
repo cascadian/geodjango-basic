@@ -104,6 +104,7 @@ MAP = (function() {
   });
 
   addLayer('/world/borders/', 'World borders');
+  addLayer('/world/states/', 'States');
   addLayer('/world/buffered-borders/', 'Buffered World Borders',
     function(feature) {
       return [new ol.style.Style({

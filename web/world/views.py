@@ -7,8 +7,8 @@ def index(request):
     return render(request, 'world/index.html', context)
 
 from django.db.models import Q
-from models import WorldBorder, BufferedWorldBorder
-from serializers import BorderSerializer, BufferedBorderSerializer
+from models import WorldBorder, BufferedWorldBorder, State
+from serializers import BorderSerializer, BufferedBorderSerializer, StateSerializer
 from django.core.serializers import serialize
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -31,3 +31,11 @@ class BufferedBorderViewSet(viewsets.ReadOnlyModelViewSet):
                                         FROM world_worldborder
                                         WHERE name = 'United States'""")
     serializer_class = BufferedBorderSerializer
+
+
+class StateViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows world borders to be viewed or edited.
+    """
+    queryset = State.objects.all()
+    serializer_class = StateSerializer
