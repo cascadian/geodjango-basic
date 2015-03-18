@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "outDir": "built"
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./app.ts",
+        "./routes/borders.ts",
+        "./routes/index.ts",
+        "./routes/users.ts",
+        "./typings/express/express.d.ts",
+        "./typings/geojson/geojson.d.ts",
+        "./typings/lodash/lodash.d.ts",
+        "./typings/node/node.d.ts",
+        "./typings/pg/pg.d.ts",
+        "./typings/sequelize/sequelize.d.ts",
+        "./typings/tsd.d.ts"
+    ]
+}

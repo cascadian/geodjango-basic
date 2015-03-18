@@ -11,3 +11,12 @@ web:
     - "8000:8000"
   links:
     - db
+webexpress:
+  build: ./web-express/
+  command: nodemon -L ./web/bin/www
+  volumes:
+    - "./web-express/:/opt/app/web"
+  ports:
+    - "3000:3000"
+  links:
+    - db
